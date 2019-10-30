@@ -1,10 +1,14 @@
 package net.anumbrella.rabbitmq.entity;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.security.Principal;
 
 /**
  * @author Anumbrella
+ * @author mygodzj
  */
+@Slf4j
 public class MyPrincipal implements Principal {
 
     private String loginName;

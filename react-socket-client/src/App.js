@@ -36,7 +36,7 @@ class App extends Component {
         const client = this.state.wsClient;
         const connected = this.state.connected;
         if(connected && client != null){
-            client.send("/message/client", {}, JSON.stringify({ 'name': 'anumbrella' }));
+            client.send("/message/client", {}, JSON.stringify({ 'name': 'mygodzj' }));
         }
     }   
 

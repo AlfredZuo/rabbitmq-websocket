@@ -2,6 +2,7 @@
 package net.anumbrella.rabbitmq.controller;
 
 import com.alibaba.fastjson.JSON;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author Anumbrella
+ * @author mygodzj
  */
+@Slf4j
 @RestController
 @RequestMapping("/websocket")
 public class SendController {
@@ -25,7 +28,7 @@ public class SendController {
      */
     @GetMapping("/notice")
     public void notice() {
-        messagingTemplate.convertAndSend("/topic/notice", JSON.toJSONString("这是通知消息！！"));
+        messagingTemplate.convertAndSend("/topic/notice", JSON.toJSONString("广播：这是通知消息！！"));
     }
 
     /**
@@ -33,7 +36,7 @@ public class SendController {
      */
     @GetMapping("/user/{name}")
     public void user(@PathVariable("name") String name) {
-        messagingTemplate.convertAndSendToUser(name, "/topic/reply", JSON.toJSONString("这是发送给" + name + "用户的消息！！"));
+        messagingTemplate.convertAndSendToUser(name, "/topic/reply", JSON.toJSONString("密送：这是发送给" + name + "用户的消息！！"));
     }
 
 

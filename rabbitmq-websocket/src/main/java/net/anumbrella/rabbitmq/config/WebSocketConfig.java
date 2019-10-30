@@ -1,7 +1,6 @@
 package net.anumbrella.rabbitmq.config;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.ChannelRegistration;
@@ -13,13 +12,12 @@ import org.springframework.web.socket.config.annotation.WebSocketTransportRegist
 
 /**
  * @author Anumbrella
+ * @author mygodzj
  */
+@Slf4j
 @Configuration
 @EnableWebSocketMessageBroker
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(WebSocketConfig.class);
-
 
     @Autowired
     private MyChannelInterceptor inboundChannelInterceptor;
@@ -42,7 +40,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
         registry.setUserDestinationPrefix("/user/");
         //客户端需要把消息发送到/message/xxx地址
         registry.setApplicationDestinationPrefixes("/message");
-        LOGGER.info("init rabbitmq websocket MessageBroker complated.");
+        log.info("init rabbitmq websocket MessageBroker completed.");
     }
 
     /**
@@ -56,7 +54,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
                 .setHandshakeHandler(myHandshakeHandler)
                 .addInterceptors(authHandshakeInterceptor)
                 .withSockJS();
-        LOGGER.info("init rabbitmq websocket endpoint ");
+        log.info("init rabbitmq websocket endpoint ");
     }
 
 
