@@ -1,4 +1,4 @@
-package net.anumbrella.rabbitmq.util;
+package com.alfred.zuo.test.websocket.util;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeansException;

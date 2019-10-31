@@ -1,4 +1,4 @@
-package net.anumbrella.rabbitmq.util;
+package com.alfred.zuo.test.websocket.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

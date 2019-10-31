@@ -1,8 +1,7 @@
 
-package net.anumbrella.rabbitmq.config;
+package com.alfred.zuo.test.websocket.config;
 
 import lombok.extern.slf4j.Slf4j;
-import net.anumbrella.rabbitmq.entity.MyPrincipal;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.WebSocketHandler;

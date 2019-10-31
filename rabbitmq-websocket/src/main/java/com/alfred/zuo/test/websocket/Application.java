@@ -1,4 +1,4 @@
-package net.anumbrella.rabbitmq;
+package com.alfred.zuo.test.websocket;
 
 /**
  * @author Anumbrella

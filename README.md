@@ -11,7 +11,7 @@ Base RabbitMQ WebSocket Spring Boot demo
 ```
 npm install
 
-npm run
+npm run start
 ```
 
 ```
@@ -19,6 +19,13 @@ http://localhost:3000
 ```
 
 ### 后端：[rabbitmq-websocket](./rabbitmq-websocket).
+```
+测试广播地址
+http://localhost:8080/websocket/notice
+测试密送地址
+http://localhost:8080/websocket/user/211
+http://localhost:8080/websocket/user/311
+```
 
 
 

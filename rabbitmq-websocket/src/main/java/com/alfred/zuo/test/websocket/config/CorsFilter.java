@@ -1,4 +1,4 @@
-package net.anumbrella.rabbitmq.config;
+package com.alfred.zuo.test.websocket.config;
 
 import lombok.extern.slf4j.Slf4j;
 
