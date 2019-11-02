@@ -43,7 +43,7 @@ class App extends Component {
 
     connect() {
         this.updateToken();
-        let client = Stomp.over(new SockJS('http://localhost:8080/ws?user=311'));
+        let client = Stomp.over(new SockJS('http://localhost:7777/ws?user=311'));
         client.heartbeat.outgoing = 0;
         client.heartbeat.incoming = 0;
 

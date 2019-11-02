@@ -31,14 +31,15 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
 
-        registry.enableStompBrokerRelay("/topic", "/queue")
-                .setRelayHost("localhost")      // rabbitmq-host服务器地址
-                .setRelayPort(61613)     // rabbitmq-stomp 服务器服务端口
-                .setClientLogin("guest")   // 登陆账户
-                .setClientPasscode("guest"); // 登陆密码
+        registry.enableStompBrokerRelay("/topic", "/queue");
+                //不推荐采用硬编码的方式配置，已经在application.yml中设置了对应的参数
+                //.setRelayHost("localhost")                // rabbitmq-host服务器地址
+                //.setRelayPort(61613)                      // rabbitmq-stomp 服务器服务端口
+                //.setClientLogin("guest")                  // 登陆账户
+                //.setClientPasscode("guest");              // 登陆密码
         //定义一对一推送的时候前缀
         registry.setUserDestinationPrefix("/user/");
-        //客户端需要把消息发送到/message/xxx地址
+        //客户端需要把消息发送到/message/xxx地址，这条相当于是指导书中的/app路径前缀,未来由SimpAnnotationMethodMessageHandler处理
         registry.setApplicationDestinationPrefixes("/message");
         log.info("init rabbitmq websocket MessageBroker completed.");
     }
@@ -50,10 +51,11 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
      */
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/ws").setAllowedOrigins("*")
-                .setHandshakeHandler(myHandshakeHandler)
-                .addInterceptors(authHandshakeInterceptor)
-                .withSockJS();
+        registry.addEndpoint("/ws")                                 //表示添加了一个/ws端点，客户端就可以通过这个端点来进行连接。
+                .setAllowedOrigins("*")                                     //表示支持CORS
+                .setHandshakeHandler(myHandshakeHandler)                    //这个方法是“自定义”处理拦截器，在这里可以验证Socket连接的用户是否可靠。
+                .addInterceptors(authHandshakeInterceptor)                  //这个方法是添加一个“自定义”TCP手势处理连接操作，是在WebSocket连接建立之前的操作。
+                .withSockJS();                                              //作用是开启SockJS支持
         log.info("init rabbitmq websocket endpoint ");
     }
 
